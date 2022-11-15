@@ -12,10 +12,11 @@ class FireStoreMethods {
   final FirebaseFirestore _firebaseFirestore = FirebaseFirestore.instance;
 
   Future<String> uploadPost(
-    String username,
-    String description,
+    String name,
     String quantity,
+    String description,
     Uint8List file,
+    String username,
     String uid,
   ) async {
     String res = "Something error occured";
@@ -27,12 +28,13 @@ class FireStoreMethods {
       String postId = const Uuid().v1();
 
       Post post = Post(
-        username: username,
+        name: name,
         quantity: quantity,
         description: description,
         postId: postId,
         postUrl: postUrl,
         datePublished: DateTime.now(),
+        username: username,
         uid: uid,
       );
 

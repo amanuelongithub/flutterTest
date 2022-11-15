@@ -2,7 +2,7 @@ import 'dart:typed_data';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:fluttertest/commponents/default_button.dart';
+import 'package:fluttertest/components/default_button.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:get/get.dart';
@@ -23,6 +23,7 @@ class _AddPostState extends State<AddPost> {
   final FirebaseAuth _auth = FirebaseAuth.instance;
   String username = "";
 
+  TextEditingController _nameController = TextEditingController();
   TextEditingController _descriptionController = TextEditingController();
   TextEditingController _quantitycontroller = TextEditingController();
   Uint8List? _file;
@@ -54,10 +55,11 @@ class _AddPostState extends State<AddPost> {
     });
     try {
       String res = await FireStoreMethods().uploadPost(
-        username,
-        _descriptionController.text,
+        _nameController.text,
         _quantitycontroller.text,
+        _descriptionController.text,
         _file!,
+        username,
         uid,
       );
       if (res == 'success') {
@@ -125,6 +127,8 @@ class _AddPostState extends State<AddPost> {
 
   @override
   void dispose() {
+    _nameController.dispose();
+    _quantitycontroller.dispose();
     _descriptionController.dispose();
     super.dispose();
   }
@@ -191,7 +195,7 @@ class _AddPostState extends State<AddPost> {
         child: SingleChildScrollView(
           physics: BouncingScrollPhysics(),
           child: Container(
-            height: MediaQuery.of(context).size.height / 1.2,
+            // height: MediaQuery.of(context).size.height / 1.2,
             child: Column(
               children: [
                 _isLoading
@@ -224,6 +228,35 @@ class _AddPostState extends State<AddPost> {
                           Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
+                              SizedBox(
+                                width: 300,
+                                child: TextFormField(
+                                  controller: _nameController,
+                                  showCursor: true,
+                                  cursorColor: Theme.of(context).primaryColor,
+                                  enableInteractiveSelection: true,
+                                  textInputAction: TextInputAction.next,
+                                  decoration: InputDecoration(
+                                    hintText: "Name",
+                                    hintStyle: TextStyle(
+                                        color:
+                                            Color.fromARGB(255, 126, 126, 126),
+                                        fontWeight: FontWeight.bold),
+                                    border: inputBorder,
+                                    focusedBorder: OutlineInputBorder(
+                                      borderSide: BorderSide(
+                                          color: Color.fromARGB(
+                                              255, 126, 126, 126),
+                                          width: 2.0),
+                                      borderRadius: BorderRadius.circular(10.0),
+                                    ),
+                                  ),
+                                  keyboardType: TextInputType.text,
+                                ),
+                              ),
+                              SizedBox(
+                                height: 30,
+                              ),
                               SizedBox(
                                 width: 300,
                                 child: TextFormField(

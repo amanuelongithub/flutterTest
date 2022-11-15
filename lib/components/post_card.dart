@@ -48,7 +48,8 @@ class _PostCardState extends State<PostCard> {
               )),
           padding: const EdgeInsets.only(left: 12.0),
           child: Text(
-            widget.snap['username'],
+            // widget.snap['username'],
+            widget.snap['name'],
             style: TextStyle(
                 color: Color.fromARGB(255, 0, 0, 0),
                 fontSize: 18,

@@ -48,23 +48,9 @@ class _MyAppState extends State<MyApp> {
               '${snapshot.error}',
             ));
           } else if (snapshot.hasData) {
-            return Container(
-                // decoration: BoxDecoration(
-                //     image: DecorationImage(
-                //         image: AssetImage(
-                //           "assets/img/screen_bg.jpg",
-                //         ),
-                //         fit: BoxFit.cover)),
-                child: const HomePage());
+            return const HomePage();
           } else {
-            return Container(
-                // decoration: BoxDecoration(
-                //     image: DecorationImage(
-                //         image: AssetImage(
-                //           "assets/img/screen_bg.jpg",
-                //         ),
-                //         fit: BoxFit.cover)),
-                child: const AuthPage());
+            return const AuthPage();
           }
         },
       ),

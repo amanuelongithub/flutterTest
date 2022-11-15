@@ -6,7 +6,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import '../main.dart';
 import '../utils/colors..dart';
-import '../commponents/default_button.dart';
+import '../components/default_button.dart';
 
 class LoginPage extends StatefulWidget {
   final VoidCallback onClickedSignUp;
@@ -197,6 +197,7 @@ class _LoginPageState extends State<LoginPage> {
           password: passwordController.text.trim());
     } on FirebaseAuthException catch (e) {
       print(e);
+      Get.snackbar(e.toString(), "message");
     }
     navigatorKey.currentState!.popUntil((rout) => rout.isFirst);
   }

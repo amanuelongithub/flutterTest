@@ -4,7 +4,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import '../main.dart';
 import '../service/aut_methods.dart';
 import '../utils/colors..dart';
-import '../commponents/default_button.dart';
+import '../components/default_button.dart';
 import 'home_screen.dart';
 import 'package:get/get.dart';
 
@@ -213,11 +213,11 @@ class _SignupPageState extends State<SignupPage> {
             ));
 
     String res = await AuthMethods().signUpUser(
-        email: emailController.text,
+        email: emailController.text.trim(),
         username: usernameController.text,
-        password: passwordController.text);
+        password: passwordController.text.trim());
     if (res != "success") {
-      Get.snackbar("res", "");
+      Get.snackbar(res, "");
     }
     navigatorKey.currentState!.popUntil((rout) => rout.isFirst);
   }

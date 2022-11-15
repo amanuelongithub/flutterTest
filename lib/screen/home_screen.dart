@@ -3,13 +3,13 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
-import 'package:fluttertest/commponents/default_button.dart';
-import 'package:fluttertest/commponents/header.dart';
+import 'package:fluttertest/components/default_button.dart';
+import 'package:fluttertest/components/header.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:fluttertest/commponents/tabButton.dart';
+import 'package:fluttertest/components/tabButton.dart';
 import 'package:fluttertest/screen/addpost.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import '../commponents/post_card.dart';
+import '../components/post_card.dart';
 import '../utils/colors..dart';
 import 'package:get/get.dart';
 
