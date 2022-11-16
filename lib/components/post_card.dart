@@ -109,12 +109,12 @@ class _PostCardState extends State<PostCard> {
                 right: 10,
               ),
               decoration: BoxDecoration(
-                  // color: Colors.yellow,
-                  // borderRadius: BorderRadius.only(
-                  //   topRight: Radius.circular(10),
-                  //   bottomRight: Radius.circular(10),
-                  // ),
-                  ),
+                // color: Colors.yellow,
+                // borderRadius: BorderRadius.only(
+                //   topRight: Radius.circular(10),
+                //   bottomRight: Radius.circular(10),
+                // ),
+              ),
               child: Padding(
                 padding: const EdgeInsets.symmetric(vertical: 10),
                 child: Column(

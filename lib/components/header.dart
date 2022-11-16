@@ -21,23 +21,35 @@ class _HeaderState extends State<Header> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        RichText(
-          text: TextSpan(children: [
-            TextSpan(
-                text: "👋 Hello:",
-                style: TextStyle(
-                    fontSize: 30,
-                    color: AppColors.maincolor,
-                    fontFamily: "HandoSoft",
-                    fontWeight: FontWeight.bold)),
-            TextSpan(
-                text: ' ${widget.snap['username']}',
-                style: TextStyle(
-                    fontSize: 27,
-                    color: AppColors.maincolor,
-                    fontFamily: "HandoSoft",
-                    fontWeight: FontWeight.bold)),
-          ]),
+        Row(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            RichText(
+              text: TextSpan(children: [
+                TextSpan(
+                    text: "👋 Hello:",
+                    style: TextStyle(
+                        fontSize: 30,
+                        color: AppColors.seccolor,
+                        fontFamily: "HandoSoft",
+                        fontWeight: FontWeight.bold)),
+                TextSpan(
+                    text: ' ${widget.snap['username']}',
+                    style: TextStyle(
+                        fontSize: 27,
+                        color: AppColors.seccolor,
+                        fontFamily: "HandoSoft",
+                        fontWeight: FontWeight.bold)),
+              ]),
+            ),
+            Spacer(),
+            CircleAvatar(
+              radius: 25,
+              backgroundImage: NetworkImage(
+                  "https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg?auto=compress&cs=tinysrgb&w=600"),
+            )
+          ],
         ),
         Padding(
             padding: EdgeInsets.only(left: 35),

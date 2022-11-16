@@ -51,7 +51,7 @@ class HomePageState extends State<HomePage> {
     return Scaffold(
       // backgroundColor: Colors.transparent,
       body: Padding(
-        padding: const EdgeInsets.only(left: 10, right: 10, top: 80),
+        padding: const EdgeInsets.only(left: 10, right: 10, top: 60),
         child: Column(
           children: [
             Expanded(
@@ -66,53 +66,71 @@ class HomePageState extends State<HomePage> {
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        StreamBuilder(
-                          stream: FirebaseFirestore.instance
-                              .collection('user')
-                              .doc(FirebaseAuth.instance.currentUser!.uid)
-                              .snapshots(), //get all data and streambuilder used as as real time
-                          builder: (context, snapshot) {
-                            if (snapshot.connectionState ==
-                                ConnectionState.waiting) {
-                              return Center(
-                                  child: Text(
-                                "...",
-                                style: TextStyle(color: AppColors.maincolor),
-                              ));
-                            }
-                            if (!snapshot.hasData) {
-                              return const Center(
-                                  child: Text(
-                                "...",
-                                style: TextStyle(
-                                    color: Color.fromARGB(184, 138, 138, 138)),
-                              ));
-                            }
-                            if (snapshot.hasError) {
-                              return Center(
-                                  child: Text(
-                                "...",
-                                style: TextStyle(
-                                    color: Color.fromARGB(184, 138, 138, 138)),
-                              ));
-                            } else if (snapshot.hasData) {
-                              return Header(
-                                snap: snapshot.data,
-                              );
-                            } else {
-                              return Container();
-                            }
-                          },
-                        ),
-                        SizedBox(
-                          height: 20,
-                        ),
                         Container(
-                          padding: const EdgeInsets.symmetric(horizontal: 15),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              /* Text(
+                          height: 200,
+                          padding:
+                              EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(20),
+                            color: AppColors.maincolor,
+                          ),
+                          child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              children: [
+                                StreamBuilder(
+                                  stream: FirebaseFirestore.instance
+                                      .collection('user')
+                                      .doc(FirebaseAuth
+                                          .instance.currentUser!.uid)
+                                      .snapshots(), //get all data and streambuilder used as as real time
+                                  builder: (context, snapshot) {
+                                    if (snapshot.connectionState ==
+                                        ConnectionState.waiting) {
+                                      return Center(
+                                          child: Text(
+                                        "...",
+                                        style: TextStyle(
+                                            color: AppColors.maincolor),
+                                      ));
+                                    }
+                                    if (!snapshot.hasData) {
+                                      return const Center(
+                                          child: Text(
+                                        "...",
+                                        style: TextStyle(
+                                            color: Color.fromARGB(
+                                                184, 138, 138, 138)),
+                                      ));
+                                    }
+                                    if (snapshot.hasError) {
+                                      return Center(
+                                          child: Text(
+                                        "...",
+                                        style: TextStyle(
+                                            color: Color.fromARGB(
+                                                184, 138, 138, 138)),
+                                      ));
+                                    } else if (snapshot.hasData) {
+                                      return Header(
+                                        snap: snapshot.data,
+                                      );
+                                    } else {
+                                      return Container();
+                                    }
+                                  },
+                                ),
+                                SizedBox(
+                                  height: 20,
+                                ),
+                                Container(
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 15),
+                                  child: Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      /* Text(
                             "Find the best \nShoes for you",
                             style: TextStyle(
                                 fontSize: 38,
@@ -120,68 +138,81 @@ class HomePageState extends State<HomePage> {
                                 color: Color.fromARGB(170, 0, 0, 0)),
                           ),
                          */
-                              Expanded(
-                                child: SizedBox(
-                                    height: 48,
-                                    child: TextField(
-                                      // controller: searchtextcontroller,
-                                      cursorColor: Colors.black,
-                                      decoration: InputDecoration(
-                                          prefixIcon: const Icon(Icons.search,
-                                              color: Colors.grey),
-                                          hintText: 'Search',
-                                          hintStyle: const TextStyle(
-                                              color: Colors.grey),
-                                          contentPadding:
-                                              const EdgeInsets.symmetric(
-                                                  horizontal: 12),
-                                          border: OutlineInputBorder(
-                                            borderRadius:
-                                                BorderRadius.circular(10),
-                                            borderSide: const BorderSide(
-                                                color: Colors.grey),
-                                          ),
-                                          enabledBorder: OutlineInputBorder(
-                                            borderRadius:
-                                                BorderRadius.circular(10),
-                                            borderSide: const BorderSide(
-                                                color: Colors.grey),
-                                          ),
-                                          focusedBorder: OutlineInputBorder(
-                                            borderRadius:
-                                                BorderRadius.circular(10),
-                                            borderSide: const BorderSide(
-                                                color: Colors.grey),
-                                          )),
-                                      keyboardType: TextInputType.text,
-                                    )),
-                              ),
-                              SizedBox(
-                                width: 5,
-                              ),
-                              ElevatedButton(
-                                style: ElevatedButton.styleFrom(
-                                    shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(
-                                          9), // <-- Radius
-                                    ),
-                                    onPrimary: Color.fromARGB(181, 0, 0, 0),
-                                    primary: AppColors.maincolor,
-                                    shadowColor: Colors.transparent,
-                                    minimumSize: Size(80, 40)),
-                                onPressed: () {
-                                  Get.to(() => AddPost());
-                                },
-                                child: Text(
-                                  "Post to",
-                                  style: TextStyle(
-                                      fontSize: 18,
-                                      color: Colors.white,
-                                      fontWeight: FontWeight.bold),
+                                      Expanded(
+                                        child: SizedBox(
+                                            height: 48,
+                                            child: TextField(
+                                              // controller: searchtextcontroller,
+                                              cursorColor: Colors.black,
+                                              decoration: InputDecoration(
+                                                  prefixIcon: const Icon(
+                                                      Icons.search,
+                                                      color: Colors.grey),
+                                                  hintText: 'Search',
+                                                  hintStyle: const TextStyle(
+                                                      color: Colors.grey),
+                                                  contentPadding:
+                                                      const EdgeInsets
+                                                              .symmetric(
+                                                          horizontal: 12),
+                                                  border: OutlineInputBorder(
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            10),
+                                                    borderSide:
+                                                        const BorderSide(
+                                                            color: Colors.grey),
+                                                  ),
+                                                  enabledBorder:
+                                                      OutlineInputBorder(
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            10),
+                                                    borderSide:
+                                                        const BorderSide(
+                                                            color: Colors.grey),
+                                                  ),
+                                                  focusedBorder:
+                                                      OutlineInputBorder(
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            10),
+                                                    borderSide:
+                                                        const BorderSide(
+                                                            color: Colors.grey),
+                                                  )),
+                                              keyboardType: TextInputType.text,
+                                            )),
+                                      ),
+                                      SizedBox(
+                                        width: 5,
+                                      ),
+                                      ElevatedButton(
+                                        style: ElevatedButton.styleFrom(
+                                            shape: RoundedRectangleBorder(
+                                              borderRadius:
+                                                  BorderRadius.circular(
+                                                      9), // <-- Radius
+                                            ),
+                                            onPrimary: Colors.black26,
+                                            primary: AppColors.seccolor,
+                                            shadowColor: Colors.transparent,
+                                            minimumSize: Size(80, 40)),
+                                        onPressed: () {
+                                          Get.to(() => AddPost());
+                                        },
+                                        child: Text(
+                                          "Post to",
+                                          style: TextStyle(
+                                              fontSize: 18,
+                                              color: Colors.black,
+                                              fontWeight: FontWeight.bold),
+                                        ),
+                                      )
+                                    ],
+                                  ),
                                 ),
-                              )
-                            ],
-                          ),
+                              ]),
                         ),
                         SizedBox(
                           height: 15,
@@ -226,7 +257,7 @@ class HomePageState extends State<HomePage> {
                                     ScrollViewKeyboardDismissBehavior.onDrag,
                                 physics: BouncingScrollPhysics(),
                                 itemCount: snapshot.data!.docs.length,
-                                padding: EdgeInsets.only(bottom: 10),
+                                padding: EdgeInsets.only(bottom: 10, top: 20),
                                 itemBuilder: (context, index) {
                                   if (snapshot.hasData) {
                                     return PostCard(
